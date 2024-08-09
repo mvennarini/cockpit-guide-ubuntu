@@ -12,7 +12,6 @@ Get certificate, replace E-Mail and Domain with yours:
 
 ```bash
 sudo certbot certonly --standalone --agree-tos --email YOUR-EMAIL-ADDRESS -d COCKPIT.YOUR-DOMAIN.COM
-cockpit configuration
 ```
 
 Create /etc/letsencrypt/deploy/update_cockpit_certificate.sh and replace the variable with your domain:
@@ -40,11 +39,16 @@ chmod a+x /etc/letsencrypt/deploy/update_cockpit_certificate.sh
 # Guida per l'abilitazione della 2FA con cockpit
 ```bash
 sudo apt-get install libpam-google-authenticator libqrencode-dev -y
+```
 
+```bash
 google-authenticator -t -d -f -r 3 -R 30 -W -Q UTF8
-
+```
+```bash
 sudo bash -c 'echo "auth required pam_google_authenticator.so nullok" >> /etc/pam.d/cockpit'
-
+```
+```bash
 sudo systemctl restart cockpit 
 ```
+
 **SALVA I CODICI IN UN POSTO SICURO NEL CASO IN CUI NON POTESSI UTILIZZARE LA 2FA!**
